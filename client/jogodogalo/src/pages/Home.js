@@ -7,7 +7,7 @@ function Home() {
     let navigate = useNavigate(); 
     const routeChange = () =>{ 
       let path = `./play`; 
-      navigate(path);
+      navigate(path);  {/* Adiciona ao endereço da página o caminho da página pretendida */}
     }
 
     return (
@@ -24,7 +24,7 @@ function Home() {
                 Cada jogador joga alternadamente e o seu objetivo é conseguir três círculos "O" ou três "X" em linha, na horizontal, na vertical ou na diagonal. 
                 Ao mesmo tempo, quando possível, deverá tentar impedir o adversário de ganhar na próxima jogada.</p>
         </div>
-        <button className="button" onClick={routeChange}>Player vs Player</button>
+        <button className="button" onClick={routeChange}>Player vs Player</button> {/* Utilizador é redirecionado para a página Play ao pressionar o botão */}
         <button className="button" onClick={routeChange}>Player vs Machine</button>
        </div>
         </>
