@@ -14,7 +14,7 @@ function About() {
             <a href='https://github.com/GMendes17'><img src={Img} alt="Github Pedro" className="about-img"/></a>
             <a href='https://github.com/pmmgasp/JogoDoGalo1'><img src={Img} alt="Github Pedro" className="about-img"/></a>
             </center>
-            <div className="about-text"><span>Pedro Gaspar - N.º 23038</span><span>Gonçalo Mendes - N.º 23042</span><span>Projeto do Jogo do Galo</span></div>
+            <div className="about-text"><span>Pedro Gaspar - N.º 23038</span><span>Gonçalo Mendes - N.º 23042</span><span>Github do Jogo do Galo</span></div>
         </div>
         
     );

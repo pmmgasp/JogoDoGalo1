@@ -17,6 +17,7 @@ function Navbar() {
         <Link to="#" className='menu-bars'>
             <HiIcons.HiMenuAlt2 onClick={showSidebar}/>
         </Link>
+        <div className='nav-title'>Jogo do Galo</div>
     </div>
     <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
       <ul className='nav-menu-items' onClick={showSidebar}>
