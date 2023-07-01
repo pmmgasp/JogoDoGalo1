@@ -1,8 +1,15 @@
 import React from "react";
 import Img from "./Images/HS.png"
-import Play from './Play';
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `./play`; 
+      navigate(path);
+    }
+
     return (
         <>
         <div className="home-img">
@@ -17,8 +24,8 @@ function Home() {
                 Cada jogador joga alternadamente e o seu objetivo é conseguir três círculos "O" ou três "X" em linha, na horizontal, na vertical ou na diagonal. 
                 Ao mesmo tempo, quando possível, deverá tentar impedir o adversário de ganhar na próxima jogada.</p>
         </div>
-        <button className="button" path='/' element={<Play/>}>Player vs Player</button>
-        <button className="button" path='/' element={<Play/>}>Player vs Machine</button>
+        <button className="button" onClick={routeChange}>Player vs Player</button>
+        <button className="button" onClick={routeChange}>Player vs Machine</button>
        </div>
         </>
     )

@@ -30,7 +30,7 @@
   float: left;
   display: flex;
   margin-top: 170px;
-  margin-left: 170px;
+  margin-left: 160px;
   align-items: center;
   justify-content: center;
 }
@@ -57,7 +57,7 @@ outline: none;
 color: #fff;
 background-color: #5c5f64;
 border: none;
-border-radius: 15px;
+border-radius: 10px;
 box-shadow: 0 5px #999;
 }
 
@@ -67,4 +67,26 @@ box-shadow: 0 5px #999;
   background-color: #4e4f51;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+.about {
+  background-color: #D3D3D3;
+  width: 900px;
+  height: 520px;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.about-title {
+  font-size: 1rem;
+  padding-top: 30px;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.about-img {
+  text-align: center;
+  padding-top: 30px;
 }
