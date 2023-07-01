@@ -12,25 +12,25 @@ export const SidebarData = [
     },
     {
         title: 'Login',
-        path: '/',
+        path: '/login',
         icon: <BsIcons.BsFillPersonFill />,
         cName: 'nav-text'
     },
     {
         title: 'Play',
-        path: '/',
+        path: '/play',
         icon: <BsIcons.BsFillPlayFill />,
         cName: 'nav-text'
     },
     {
         title: 'Options',
-        path: '/',
+        path: '/options',
         icon: <IoIcons.IoIosOptions />,
         cName: 'nav-text'
     },
     {
         title: 'About',
-        path: '/',
+        path: '/about',
         icon: <AiIcons.AiOutlineQuestionCircle />,
         cName: 'nav-text'
     }
