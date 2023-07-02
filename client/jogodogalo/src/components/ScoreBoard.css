@@ -1,0 +1,21 @@
+.scoreboard{
+    float:right;
+    margin-right: 270px;
+    width: 200px;
+    height: 200px;
+}
+
+.score {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 10rem;
+    height: 5rem;
+    font-size: 1.5rem;
+    background-color: white;
+    box-shadow: 0px 0px 8px #888888;
+    border-radius: 10px;
+    font-weight: bold;
+  }

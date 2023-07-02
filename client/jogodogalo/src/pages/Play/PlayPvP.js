@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Board} from '../../components/Board'
+import {ScoreBoard} from '../../components/ScoreBoard';
 
 function PlayPvP() {
 
@@ -15,7 +16,9 @@ function PlayPvP() {
   ]
 
   const [board, setBoard] = useState(Array(9).fill(null));
-  const [xPlaying, setXPlaying] = useState(true)
+  const [p1Playing, setP1Playing] = useState(true);
+  const [scores, setScores] = useState({p1Score: 0, p2Score: 0});
+  const [gameOver,setGameOver] = useState(false);
  
   const handleBoxClick = (boxIdx) =>{
     if (board[boxIdx] !== null) {
@@ -23,31 +26,51 @@ function PlayPvP() {
 
     const updatedBoard = board.map((value, idx) =>{
       if (idx === boxIdx) {
-        return xPlaying === true ? "X" : "O";
+        return p1Playing === true ? "Player1" : "Player2";
       } else {
         return value;
       }
     })
 
-    checkWinner(updatedBoard);
     setBoard(updatedBoard);
-    setXPlaying(!xPlaying);
+
+    const winner = checkWinner(updatedBoard);
+
+    if(winner){
+      if(winner === "Player2"){
+        let {p2Score} = scores;
+        p2Score += 1;
+        setScores({...scores, p2Score});
+    } else {
+        let {p1Score} = scores;
+        p1Score += 1;
+        setScores({...scores, p1Score});
+    }
   }
 
-  const checkWinner =(board) =>{
+    setP1Playing(!p1Playing);
+  }
+
+  const checkWinner = (board) =>{
     for(const element of WC){
       const[x,y,z] = element;
 
       if (board[x] && board[x] === board[y] && board[y] === board[z]){
-        console.log(board[x])
+        setGameOver(true)
         return board[x]
       }
     }
   }
 
+  const resetBoard = () =>{
+      setGameOver(false);
+      setBoard(Array(9).fill(null));
+  }
+
   return (
     <div>
-      <Board board={board} onClick={handleBoxClick}/>
+      <ScoreBoard scores ={scores}/>
+      <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick}/>
       </div>
   )
 }
