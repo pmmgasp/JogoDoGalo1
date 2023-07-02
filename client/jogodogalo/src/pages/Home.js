@@ -1,14 +1,19 @@
 import React from "react";
-import Img from "./Images/HS.png"
+import Img from "../images/HS.png"
 import { useNavigate } from "react-router-dom";
 
 function Home() {
 
     let navigate = useNavigate(); 
     const routeChange = () =>{ 
-      let path = `./play`; 
+      let path = `./playpvp`; 
       navigate(path);  {/* Adiciona ao endereço da página o caminho da página pretendida */}
     }
+
+    const routeChange1 = () =>{ 
+        let path = `./playpvm`; 
+        navigate(path);  {/* Adiciona ao endereço da página o caminho da página pretendida */}
+      }
 
     return (
         <>
@@ -25,7 +30,7 @@ function Home() {
                 Ao mesmo tempo, quando possível, deverá tentar impedir o adversário de ganhar na próxima jogada.</p>
         </div>
         <button className="button" onClick={routeChange}>Player vs Player</button> {/* Utilizador é redirecionado para a página Play ao pressionar o botão */}
-        <button className="button" onClick={routeChange}>Player vs Machine</button>
+        <button className="button" onClick={routeChange1}>Player vs Machine</button>
        </div>
         </>
     )
