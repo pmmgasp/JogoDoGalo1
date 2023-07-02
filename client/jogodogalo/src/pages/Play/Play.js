@@ -18,8 +18,8 @@ function Play() {
 
     return (
         <div className="about">
-            <button className="button2" onClick={routeChange}><img src={Img} alt="Github Pedro" className="play-img"/>Player vs Player</button> {/* Utilizador é redirecionado para a página Play ao pressionar o botão */}
-            <button className="button2" onClick={routeChange1}><img src={Img1} alt="Github Pedro" className="play-img"/>Player vs Machine</button>
+            <button className="button2" onClick={routeChange}><img src={Img} alt="PvP" className="play-img"/>Player vs Player</button> {/* Utilizador é redirecionado para a página Play ao pressionar o botão */}
+            <button className="button2" onClick={routeChange1}><img src={Img1} alt="PvM" className="play-img"/>Player vs Machine</button>
         </div>
     )
 }
