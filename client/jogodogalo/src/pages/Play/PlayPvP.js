@@ -3,7 +3,7 @@ import {Box} from '../../components/Box'
 
 function PlayPvP() {
   return (
-    <div><Box/></div>
+    <div><Box value="X" onClick={null}/></div>
   )
 }
 
