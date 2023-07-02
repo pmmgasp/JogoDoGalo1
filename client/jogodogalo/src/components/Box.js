@@ -7,6 +7,10 @@ export const Box = ({ value, onClick }) => {
   const player = value === "X" ? Img1 : Img2;
 
     return (
-        <button className="box" onClick={onClick}><img src={player} alt="Jogador" className='img'/></button>
+          <button className="box" onClick={onClick}>
+            {value === 'X' && <img src={player} alt="Jogador" className='img'/>}
+            {value === 'O' && <img src={player} alt="Jogador" className='img'/>}
+          </button>
+      
   )
 }
