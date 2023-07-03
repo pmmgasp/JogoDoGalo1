@@ -55,7 +55,13 @@ function PlayPvP() {
         let {p1Score} = scores;
         p1Score += 1;
         setScores({...scores, p1Score});
-    }
+    } 
+  }
+
+  /* se todos os valores forem not null, o jogo acaba*/
+
+    if (checkTie(updatedBoard)){
+      setGameOver(true);
   }
 
     /* Muda a vez de jogar */
@@ -74,6 +80,12 @@ function PlayPvP() {
         return board[x]
       }
     }
+  }
+
+  /* retorna se os valores do tabuleiro sao todos not null */
+
+  const checkTie = (board) => {
+    return (board.every((value) => value !== null))
   }
 
   /* Dá reset na board */
