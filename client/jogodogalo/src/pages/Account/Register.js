@@ -1,26 +1,18 @@
 import React from "react";
+import Img from "../../images/registo.png"
 
 function Register() {
     return (
-        <div className="register">
-            <label>
-                 Nome:
-                <input type="text" name="name" />
-            </label>
-            <label>
-                 Email:
-                <input type="text" name="name" />
-            </label>
-            <label>
-                 Password:
-            <input type="text" name="name" />
-            </label>
-            <label>
-                 Confirm Password:
-            <input type="text" name="name" />
-            </label>
-            <button>Registar</button>
-        </div>
+        <div align="center">
+            <img src={Img} alt="Regist Screen" className="reg-img"/>
+                <div className="cont">
+                    <input className="inptLgRg" type="text" name="nome" placeholder="Nome" />
+                    <input className="inptLgRg" type="text" name="email" placeholder="Email"/>
+                    <input className="inptLgRg" type="text" name="pwd" placeholder="Password"/>
+                    <input className="inptLgRg" type="text" name="confpwd" placeholder="Confirm Password" />
+                    <button className="button3">Criar conta</button>
+                </div>
+            </div>
     )
 }
 
