@@ -20,11 +20,12 @@ const Login = () => {
         email: email, password: password,
         }).then((response) => { console.log(response)
         if (response.data.logged === true) {
-            navigate('/')}}
+            navigate('/')
+            setTimeout(function() {
+                window.location.reload(false);
+            }.bind(this),50)}}
         )
     }
-
-    //response.data.message !== "Wrong username/password combination!" && response.data.message !== "User doesn't exist"
 
     useEffect(()=>{
         Axios.get("http://localhost:3001/login").then((response) => {
@@ -43,7 +44,7 @@ const Login = () => {
                     <a href="/register" className="text">Não têm conta? Registe-se aqui.</a>
                     <br />
                     <br />
-                    <button className="button3" on onClick={login}>Iniciar sessão</button>
+                    <button className="button3" http-equiv="refresh" on onClick={login}>Iniciar sessão</button>
                 </div>
         </div>
     )

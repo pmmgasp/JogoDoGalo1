@@ -22,7 +22,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60 * 60 * 24,
+        expires: 60 * 60 * 60 * 24,
         sameSite: "none",
     },
 }))
@@ -60,6 +60,11 @@ app.get('/login', (req, res) => {
     } else {
         res.send({logged: false})
     }
+})
+
+app.post("/logout", (req, res) => {
+    res.send({ logged: false })
+    req.session.destroy();
 })
 
 app.post('/login', (req, res) => {
