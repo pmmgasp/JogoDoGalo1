@@ -20,10 +20,10 @@ const Register = () => {
         <div align="center">
             <img src={Img} alt="Regist Screen" className="reg-img"/>
                 <div className="cont">
-                    <input className="inptLgRg" type="text" name="nome" placeholder="Nome" onChange={(e) => { setName(e.target.value) }}/>
-                    <input className="inptLgRg" type="text" name="email" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }}/>
-                    <input className="inptLgRg" type="text" name="pwd" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }}/>
-                    <input className="inptLgRg" type="text" name="confpwd" placeholder="Confirm Password" />
+                    <input className="inptLgRg" type="name" placeholder="Nome" onChange={(e) => { setName(e.target.value) }}/>
+                    <input className="inptLgRg" type="email" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }}/>
+                    <input className="inptLgRg" type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }}/>
+                    <input className="inptLgRg" type="password" placeholder="Confirm Password" />
                     <button className="button3" onClick={register}>Criar conta</button>
                 </div>
             </div>

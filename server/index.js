@@ -2,8 +2,13 @@ const express = require("express")
 const app = express()
 const mysql = require("mysql")
 const cors = require("cors")
+const bcrypt = require("bcrypt")
+const saltRounds = 10;
 
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true}));
 app.use(express.json());
 
 const db = mysql.createConnection({
@@ -13,13 +18,14 @@ const db = mysql.createConnection({
     database: 'jogodogalo'
 });
 
+
 app.post('/register', (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
-   
+    bcrypt.hash(password, saltRounds, (err, hash) => {
     db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)",
-    [name, email, password],
+    [name, email, hash],
     (err, result) => {
         if (err) {
             console.log(err);
@@ -28,18 +34,25 @@ app.post('/register', (req, res) => {
         }
     })
 } 
-)
+)})
 
 app.post('/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
-    db.query("SELECT * FROM users WHERE name = ? AND password = ?",[email,password], (err, result) => {
+    db.query("SELECT * FROM users WHERE email = ?;",email, (err, result) => {
     if (err) {
         res.send({err: err});}
     if (result.length > 0) {
-        res.send(result)
+        bcrypt.compare(password, result[0].password, (err, response) => {
+            if (response){
+                res.send(result)
+            } else {
+                res.send({message: "Wrong username/password combination!"})
+
+            }
+        })
     }else {
-        res.send({message: "Wrong username/password combination!"})};}        
+        res.send({message: "User doesn't exist" })};}        
             );
 })
 

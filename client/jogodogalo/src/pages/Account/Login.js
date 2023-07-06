@@ -4,6 +4,7 @@ import Img from "../../images/Login.png"
 import Axios from 'axios'
 import { useNavigate } from "react-router-dom"
 
+
 const Login = () => {
 
     const[email,setEmail] = useState("")
@@ -15,7 +16,11 @@ const Login = () => {
     const login = () => {
         Axios.post("http://localhost:3001/login", {
         email: email, password: password,
-        }).then((response) => console.log(response))
+        }).then((response) => {console.log(response)
+        if (response.data.message !== "Wrong username/password combination!" && response.data.message !== "User doesn't exist") {
+            navigate('/')}}
+        )
+        
     
 }
         
@@ -25,7 +30,7 @@ const Login = () => {
             <img src={Img} alt="Login Screen" className="login-img"/>
                 <div className="cont">
                     <input className="inptLgRg" type="email" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }}/>
-                    <input className="inptLgRg" type="pwd" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }}/>
+                    <input className="inptLgRg" type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }}/>
                     <a href="/register" className="text">Não têm conta? Registe-se aqui.</a>
                     <br />
                     <br />
