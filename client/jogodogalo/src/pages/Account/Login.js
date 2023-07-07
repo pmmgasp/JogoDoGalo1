@@ -13,8 +13,10 @@ const Login = () => {
     const[passwordStatus,setPasswordStatus] = useState("")
     const navigate = useNavigate()
 
+    //Mantêm as cookies
     Axios.defaults.withCredentials = true;
     
+    //Efetua o login de um utilizador existente e redireciona para a página inicial se for bem sucedido
     const login = () => {
         Axios.post("http://localhost:3001/login", {
         email: email, password: password,
@@ -28,6 +30,7 @@ const Login = () => {
     }
 
     useEffect(()=>{
+        //Se o utilizador já estiver autenticado, mudar para a página principal
         Axios.get("http://localhost:3001/login").then((response) => {
             if (response.data.logged === true){
             navigate('/')

@@ -9,15 +9,16 @@ import Axios from 'axios'
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const [logged, setLogged] = useState(false);
-  
   const [name, setName] = useState("");
   const navigate = useNavigate()
 
+  //Mantêm os cookies
   Axios.defaults.withCredentials = true;
 
   const showSidebar = () => setSidebar(!sidebar);
 
   const logout = () => {
+    //Efetua o logout do utilizador
     Axios.post("http://localhost:3001/logout", {})
     //Mudar para a página principal
     navigate('/')  
@@ -39,6 +40,7 @@ useEffect(() => {
   })
 }, [])
 
+  //Criação e personalização da barra de navegação da app
   return (
     <>
     <IconContext.Provider value={{ color: '#fff' }}> {/* Define a cor dos icónes, títulos da sidebar como branca */}

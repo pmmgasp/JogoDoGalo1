@@ -22,13 +22,13 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60 * 60 * 60 * 24,
+        expires: 60 * 60 * 24,
         sameSite: "none",
     },
 }))
     
 
-
+//Criar conexão com a database
 const db = mysql.createConnection({
     user: 'root',
     host: 'localhost',
@@ -36,7 +36,7 @@ const db = mysql.createConnection({
     database: 'jogodogalo'
 });
 
-
+//Registar utilizador na base de dados
 app.post('/register', (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
@@ -48,12 +48,13 @@ app.post('/register', (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res.send("Values Inserted")
+            res.send({registo: true})
         }
     })
 } 
 )})
 
+//Devolver dados sobre o utilizador autenticado
 app.get('/login', (req, res) => {
     if (req.session.user) {
         res.send({logged: true, user: req.session.user})
@@ -62,11 +63,13 @@ app.get('/login', (req, res) => {
     }
 })
 
+//Efetuar logout do utilizador autenticado
 app.post("/logout", (req, res) => {
     res.send({ logged: false })
     req.session.destroy();
 })
 
+//Autenticar o utilizador
 app.post('/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -90,7 +93,7 @@ app.post('/login', (req, res) => {
 })
 
 app.listen(3001, ()=>{
-    console.log("Yey, your server is running on port 3001")
+    console.log("Server is running on port 3001")
 })
 
 

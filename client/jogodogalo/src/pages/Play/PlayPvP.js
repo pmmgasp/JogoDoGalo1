@@ -5,7 +5,6 @@ import {ScoreBoard} from '../../components/ScoreBoard';
 function PlayPvP() {
 
   /* Condições dos indexs para que haja vitória */
-
   const WC = [ 
     [0,1,2],
     [0,3,6],

@@ -13,15 +13,25 @@ const Register = () => {
     const[confirmPasswordStatus,setConfirmPasswordStatus] = useState("")
     const navigate = useNavigate()
 
+    //Efetua o registo de um novo utilizador
     const register = () => {
-        if (password != confirmPassword) {
+        //Confirmar se as palavras-passe correspondem
+        if (password !== confirmPassword) {
             setConfirmPasswordStatus("A palavra-passe não coincide com a confirmação.");
         }
         else {
+            //Registar o utilizador e faz o login automaticamente se o registo for bem sucedido, redirecionando depois para a página inicial
             Axios.post("http://localhost:3001/register", {
             name: name, email: email, password: password,
-            }).then(() => console.log("It worked"),
-            navigate('/login'))
+            }).then((response) => {if (response.data.registo === true){
+                Axios.post("http://localhost:3001/login", {email: email, password: password,}).then(()=>{
+                navigate('/')
+                setTimeout(function() {
+                    window.location.reload(false);
+                }.bind(this),50)
+                })
+            }
+            })
         
     }}
 
