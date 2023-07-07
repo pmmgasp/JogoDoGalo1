@@ -1,22 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import * as HiIcons from "react-icons/hi";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { SidebarData } from './SidebarData'
 import './Navbar.css';
 import { IconContext } from 'react-icons'
 import Axios from 'axios'
-import { useNavigate } from "react-router-dom"
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
-  const [logged, setLogged] = useState(false)
+  const [logged, setLogged] = useState(false);
+  
+  const [name, setName] = useState("");
   const navigate = useNavigate()
 
   Axios.defaults.withCredentials = true;
 
   const showSidebar = () => setSidebar(!sidebar);
 
-  const logoff = () => {
+  const logout = () => {
     Axios.post("http://localhost:3001/logout", {})
     //Mudar para a página principal
     navigate('/')  
@@ -31,6 +32,7 @@ useEffect(() => {
       //Se o utilizador estiver autenticado, alterar o conteúdo da barra de navegação
       if (response.data.logged === true) {
         setLogged(true)
+        setName(response.data.user[0].name)
       } else {
         setLogged(false)
       }
@@ -44,8 +46,7 @@ useEffect(() => {
         <Link to="#" className='menu-bars'>
             <HiIcons.HiMenuAlt2 onClick={showSidebar}/> {/* Abre a sidebar */}
         </Link>
-        <div className='nav-title'>{logged ? <span onClick={logoff}>Logout</span> : <span>Jogo do Galo</span>}</div> 
-    </div>
+        {logged ? <div className='nav-title-logged'><span>Olá {name}!</span><span className='nav-logout' onClick={logout}>Logout</span></div> : <span className='nav-title'>Jogo do Galo</span>}</div> 
     <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
       <ul className='nav-menu-items' onClick={showSidebar}> {/* Fecha a sidebar */}
         <li className='navbar-toggle'>

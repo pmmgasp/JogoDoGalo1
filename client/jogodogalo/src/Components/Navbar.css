@@ -16,7 +16,21 @@
     color: white;
     font-size: 1.7rem;
     margin-left: 1290px;
+    display:flex;
 }
+
+.nav-title-logged {
+    color: white;
+    font-size: 1.7rem;
+    margin-left: 1175px;
+    display:flex;
+}
+
+.nav-logout {
+    cursor: pointer;
+}
+
+
 
 .nav-menu {
     background-color: #171923;
@@ -76,6 +90,4 @@
 span {
     margin-left: 16px;
 }
-
-
 
