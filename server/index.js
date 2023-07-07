@@ -42,17 +42,29 @@ app.post('/register', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     bcrypt.hash(password, saltRounds, (err, hash) => {
-    db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)",
-    [name, email, hash],
-    (err, result) => {
+    db.query("SELECT * FROM users WHERE name = ?;", name, (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+        if (result.length > 0) {
+            res.send({message: "Esse nome de utilizador não está disponível."})
+        } else {
+            db.query("SELECT * FROM users WHERE email = ?;", email, (err, result) => {
+                if (result.length > 0) {
+                    res.send({message: "Esse email não está disponível."})
+                } else {
+        db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)",[name, email, hash],(err, result) => {
         if (err) {
             console.log(err);
         } else {
             res.send({registo: true})
+        }})
         }
     })
-} 
-)})
+}
+})
+})
+})
 
 //Devolver dados sobre o utilizador autenticado
 app.get('/login', (req, res) => {
@@ -83,12 +95,12 @@ app.post('/login', (req, res) => {
                 console.log(req.session.user)
                 res.send({logged: true, result: result})
             } else {
-                res.send({logged: false, message: "Wrong username/password combination!"})
+                res.send({logged: false, message: "Combinação de nome de utilizador/password incorretos!"})
 
             }
         })
     }else {
-        res.send({logged: false, message: "User doesn't exist" })};}        
+        res.send({logged: false, message: "Utilizador não existe." })};}        
             );
 })
 

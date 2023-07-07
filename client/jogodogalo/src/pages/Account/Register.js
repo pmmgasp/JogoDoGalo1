@@ -30,9 +30,10 @@ const Register = () => {
                     window.location.reload(false);
                 }.bind(this),50)
                 })
+            } else {
+                console.log(response.data.message)
             }
             })
-        
     }}
 
     return (
