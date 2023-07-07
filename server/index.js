@@ -22,7 +22,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60 * 60 * 24,
+        expires: 60 * 60 * 60 * 24,
         sameSite: "none",
     },
 }))
@@ -46,24 +46,24 @@ app.post('/register', (req, res) => {
         if (err) {
             console.log(err)
         }
-        if (result.length > 0) {
-            res.send({message: "Esse nome de utilizador não está disponível."})
-        } else {
-            db.query("SELECT * FROM users WHERE email = ?;", email, (err, result) => {
-                if (result.length > 0) {
-                    res.send({message: "Esse email não está disponível."})
-                } else {
-        db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)",[name, email, hash],(err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send({registo: true})
-        }})
-        }
+            if (result.length > 0) {
+                res.send({message1: "Esse nome de utilizador não está disponível."})
+            } else {
+                db.query("SELECT * FROM users WHERE email = ?;", email, (err, result) => {
+                    if (result.length > 0) {
+                            res.send({message2: "Esse email não está disponível."})
+                        } else {
+                            db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)",[name, email, hash],(err, result) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.send({registo: true})
+                        }}
+                    )}
+                })
+            }
+        })
     })
-}
-})
-})
 })
 
 //Devolver dados sobre o utilizador autenticado
@@ -95,12 +95,12 @@ app.post('/login', (req, res) => {
                 console.log(req.session.user)
                 res.send({logged: true, result: result})
             } else {
-                res.send({logged: false, message: "Combinação de nome de utilizador/password incorretos!"})
+                res.send({logged: false, message1: "Combinação email/password incorretos!"})
 
             }
         })
     }else {
-        res.send({logged: false, message: "Utilizador não existe." })};}        
+        res.send({logged: false, message2: "Utilizador não existe." })};}        
             );
 })
 

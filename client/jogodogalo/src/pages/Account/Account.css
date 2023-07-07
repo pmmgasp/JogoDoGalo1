@@ -11,8 +11,8 @@
     font-weight: bold;
 }
 .inptLgRg {
-    margin-top: 10px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -22,7 +22,7 @@
   }
 
   .login-img {
-    margin-top: 70px;
+    margin-top: 30px;
     width:150px;
     height:150px;
   }
