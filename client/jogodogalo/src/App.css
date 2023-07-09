@@ -132,3 +132,26 @@ span {
   margin-left: 30px;
   margin-right: 30px;
 }
+
+.image-section {
+  margin-top: 20px;
+}
+
+.image-options {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.image-options button {
+  margin-right: 10px;
+}
+
+.image-options input[type="file"] {
+  margin-left: 10px;
+}
+
+.image-section img {
+  margin-top: 10px;
+  max-width: 200px;
+}
