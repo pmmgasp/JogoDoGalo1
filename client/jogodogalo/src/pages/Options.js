@@ -9,15 +9,15 @@ function Options({ onDifficultyChange }) {
   Axios.defaults.withCredentials = true;
 
   const [difficulty, setDifficulty] = useState("easy");
-  const [player1Image, setPlayer1Image] = useState(xImage);
-  const [player2Image, setPlayer2Image] = useState(oImage);
+  const [player1Image, setPlayer1Image] = useState(oImage);
+  const [player2Image, setPlayer2Image] = useState(xImage);
   const [name , setName] =  useState("");
   const [id , setId] = useState("");
   const [nameNew , setNameNew] =  useState("");
   const [erro, setErro] = useState("")
   const [confirm, setConfirm] = useState("")
   const [logged , setLogged] = useState(false);
- 
+  
   ////dificuldade************************************************
   useEffect(() => {
     const savedDifficulty = localStorage.getItem("difficulty");

@@ -19,18 +19,11 @@
     box-shadow: 0 0 1em rgb(0 0 0 / .3);
     text-align: center;
   }
-  
-  .popup-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+
   .popup button {
     border: 0;
     cursor: pointer;
     background: #5c5f64;
-    margin-top: 20px;
     font-weight: 700;
     padding: 5px 20px;
     border-radius: 10px;

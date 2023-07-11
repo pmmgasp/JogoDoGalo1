@@ -3,7 +3,7 @@ import { Board } from '../../components/Board';
 import { ScoreBoard } from '../../components/ScoreBoard';
 import '../Options.css';
 
-function PlayPvM({ difficulty}) {
+function PlayPvM({ difficulty }) {
   const WC = [
     [0, 1, 2],
     [0, 3, 6],
@@ -25,10 +25,12 @@ function PlayPvM({ difficulty}) {
   // Utilize o valor da dificuldade conforme necessário
   console.log("Dificuldade selecionada:", difficulty);
 
+
   useEffect(() => {
     resetBoard();
   }, [difficulty]);
-
+  
+  /* Impede que o jogador volte a clicar no mesmo quadrado caso o valor do mesmo não seja null */
   const handleBoxClick = (boxIdx) => {
     if (board[boxIdx] !== null || gameOver) {
       return;
@@ -247,15 +249,13 @@ function PlayPvM({ difficulty}) {
       <ScoreBoard scores={scores} />
       {showPopup && (
         <div className="popup">
-          <div className="popup-content">
-            <h2>{winner ? `${winner} wins!` : "It's a tie!"}</h2>
+            <h2 className="text">{winner ? `${winner} wins!` : "It's a tie!"}</h2>
             <br />
             <button onClick={handlePopupOk}>OK</button>
-          </div>
         </div>
       )}
-      <button className= "btn-reset " onClick={handleReset}>Resetar</button>
-      <Board board={board} onClick={handleBoxClick} />
+      <button className= "btn-reset" onClick={handleReset}>Resetar</button>
+      <Board board={board} onClick={handleBoxClick}/>
       <div>
       </div>
     </div>

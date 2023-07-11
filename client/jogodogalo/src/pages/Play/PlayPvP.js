@@ -25,8 +25,9 @@ function PlayPvP() {
  
   const handleBoxClick = (boxIdx) =>{
     /* Impede que o jogador volte a clicar no mesmo quadrado caso o valor do mesmo não seja null */
-    if (board[boxIdx] !== null) {
-      return;}
+    if (board[boxIdx] !== null || gameOver) {
+      return;
+    }
 
     /* Atualiza os indexs com as imagens dos jogadores consoante qual o jogador que está */  
     const updatedBoard = board.map((value, idx) =>{
@@ -114,14 +115,12 @@ function PlayPvP() {
       <ScoreBoard scores ={scores}/>
       {showPopup && (
         <div className="popup">
-          <div className="popup-content">
-            <h2>{winner ? `${winner} wins!` : "It's a tie!"}</h2>
+            <h2 className="text">{winner ? `${winner} wins!` : "It's a tie!"}</h2>
             <br />
             <button onClick={handlePopupOk}>OK</button>
-          </div>
         </div>
       )}
-      <button className= "btn-reset " onClick={handleReset}>Resetar</button>
+      <button className= "btn-reset" onClick={handleReset}>Resetar</button>
       <Board board={board} onClick={handleBoxClick}/>
       </div>
   )

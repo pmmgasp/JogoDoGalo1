@@ -2,7 +2,7 @@ import React from 'react'
 import './Board.css'
 import {Box} from './Box.js'
 
-export const Board = ({board, onClick}) => {
+export const Board = ({board, onClick }) => {
   return (
     <div className='board'>      
       {board.map((value, idx) =>{
