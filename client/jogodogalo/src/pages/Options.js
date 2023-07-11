@@ -2,31 +2,32 @@ import React, { useState, useEffect } from "react";
 import oImage from "../images/O.png";
 import xImage from "../images/X.png";
 import "./Options.css";
-import { Box } from "../components/Box";
 import Axios from "axios"
-import { useNavigate, useParams } from "react-router-dom"
 
 function Options({ onDifficultyChange }) {
 
   Axios.defaults.withCredentials = true;
 
   const [difficulty, setDifficulty] = useState("easy");
-  const [player1Image, setPlayer1Image] = useState(oImage);
-  const [player2Image, setPlayer2Image] = useState(xImage);
+  const [player1Image, setPlayer1Image] = useState(xImage);
+  const [player2Image, setPlayer2Image] = useState(oImage);
   const [name , setName] =  useState("");
   const [id , setId] = useState("");
   const [nameNew , setNameNew] =  useState("");
   const [erro, setErro] = useState("")
   const [confirm, setConfirm] = useState("")
-  const navigate = useNavigate()
   const [logged , setLogged] = useState(false);
  
   ////dificuldade************************************************
   useEffect(() => {
     const savedDifficulty = localStorage.getItem("difficulty");
+    const savedImage1 = localStorage.getItem("player1Image")
     if (savedDifficulty) {
       setDifficulty(savedDifficulty);
       onDifficultyChange(savedDifficulty);
+    }
+    if (savedImage1) {
+      setPlayer1Image(savedImage1)
     }
   }, [onDifficultyChange]);
 
@@ -36,6 +37,7 @@ function Options({ onDifficultyChange }) {
     onDifficultyChange(selectedDifficulty);
     localStorage.setItem("difficulty", selectedDifficulty);
   };
+
   //****************************************************************************** */
 
 
@@ -85,7 +87,7 @@ function Options({ onDifficultyChange }) {
         if (response.data.logged == true) {
             setId(response.data.user[0].id)
             setName(response.data.user[0].name)
-            setLogged(true)
+            setLogged("true")
 
         }else{
           setLogged(false)
@@ -98,11 +100,12 @@ function Options({ onDifficultyChange }) {
   const handlePlayImageChange = (event) => {
     const player1choice = event.target.value;
     setPlayer1Image(player1choice);
+    localStorage.setItem("player1Image", );
   };
 
   return (
     <div className="options">
-      <h1>Options</h1>
+      <h1>Opções</h1>
       <div className="options-container">
         <div className="section-container">
           <div className="difficulty">
@@ -141,8 +144,6 @@ function Options({ onDifficultyChange }) {
               <h3>Jogador 1:</h3>
               <div className="image-options">
                 <div className="image-option">
-                  <label>
-                    Pre-defined Images:
                     <div className="Btn-O-X">
                       <button
                         className={`image-button ${
@@ -171,7 +172,6 @@ function Options({ onDifficultyChange }) {
                         <img src={xImage} alt="Image 2" />
                       </button>
                     </div>
-                  </label>
                 </div>
               </div>
             </div>
@@ -179,8 +179,6 @@ function Options({ onDifficultyChange }) {
               <h3>Jogador 2:</h3>
               <div className="image-options">
                 <div className="image-option">
-                  <label>
-                    Pre-defined Images:
                     <div className="Btn-O-X">
                       <button
                         className={`image-button ${
@@ -209,23 +207,18 @@ function Options({ onDifficultyChange }) {
                         <img src={xImage} alt="Image 2" />
                       </button>
                     </div>
-                  </label>
                 </div>
               </div>
             </div>
           </div>
-          {logged == true ?  <div className="accChanges">
+          {logged === "true" ?  <div className="accChanges">
             <div className="accChanges-buttons">
-            <p className="RegText">Email</p>
-              <input className="input" type="text" placeholder={name} onChange={(e) => { setNameNew(e.target.value) }}></input>
-              <button className="accChanges-button" onClick={ChangeName} >mudar o meu nome</button>
-              <button className="accChanges-button" onClick={deleteAcc} >Apagar conta</button>
+            <p className="Options-text">Email:</p>
+              <input className="input3" type="text" placeholder={name} onChange={(e) => { setNameNew(e.target.value) }}></input>
+              <button className="accChanges-button" onClick={ChangeName} >Alterar Nome</button>
+              <button className="accChanges-button" onClick={deleteAcc} >Eliminar Conta</button>
             </div>
-          </div> : <div></div>
-
-          
-         
-          }
+          </div> : <div></div>}
         </div>
       </div>
     </div>

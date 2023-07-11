@@ -3,7 +3,7 @@ import { Board } from '../../components/Board';
 import { ScoreBoard } from '../../components/ScoreBoard';
 import '../Options.css';
 
-function PlayPvM({ difficulty }) {
+function PlayPvM({ difficulty}) {
   const WC = [
     [0, 1, 2],
     [0, 3, 6],
@@ -47,17 +47,18 @@ function PlayPvM({ difficulty }) {
     const winner = checkWinner(updatedBoard);
 
     if (winner) {
-      setWinner(winner);
       setGameOver(true);
       setShowPopup(true);
       if (winner === 'Player2') {
         let { p2Score } = scores;
         p2Score += 1;
         setScores({ ...scores, p2Score });
+        setWinner(winner);
       } else {
         let { p1Score } = scores;
         p1Score += 1;
         setScores({ ...scores, p1Score });
+        setWinner(winner);
       }
     } else if (checkTie(updatedBoard)) {
       setGameOver(true);
@@ -228,11 +229,14 @@ function PlayPvM({ difficulty }) {
     }
   }, [board, p1Playing, gameOver, difficulty]);
 
+
+  //função para que apareça um pop-up quando o jogo acaba
   const handlePopupOk = () => {
     setShowPopup(false);
     resetBoard();
   };
 
+  //função para que o board dê reset ao clicarmos no botão "Reset"
   const handleReset = () => {
     resetBoard();
   }
@@ -240,7 +244,6 @@ function PlayPvM({ difficulty }) {
   return (
     //código para o popup e para o tabuleiro
     <div>
-      <p>{difficulty }</p>
       <ScoreBoard scores={scores} />
       {showPopup && (
         <div className="popup">
@@ -251,7 +254,7 @@ function PlayPvM({ difficulty }) {
           </div>
         </div>
       )}
-      <button className= "btn-reset " onClick={handleReset}>Reset</button>
+      <button className= "btn-reset " onClick={handleReset}>Resetar</button>
       <Board board={board} onClick={handleBoxClick} />
       <div>
       </div>

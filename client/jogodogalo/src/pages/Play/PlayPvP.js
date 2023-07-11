@@ -20,6 +20,8 @@ function PlayPvP() {
   const [p1Playing, setP1Playing] = useState(true);
   const [scores, setScores] = useState({p1Score: 0, p2Score: 0});
   const [gameOver,setGameOver] = useState(false);
+  const [winner, setWinner] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
  
   const handleBoxClick = (boxIdx) =>{
     /* Impede que o jogador volte a clicar no mesmo quadrado caso o valor do mesmo não seja null */
@@ -45,23 +47,24 @@ function PlayPvP() {
 
     /* Ao vencedor é incrementado 1 no valor do score pela função setScores e o valor ficar guardado */
 
-    if(winner){
-      if(winner === "Player2"){
-        let {p2Score} = scores;
-        p2Score += 1;
-        setScores({...scores, p2Score});
-    } else {
-        let {p1Score} = scores;
-        p1Score += 1;
-        setScores({...scores, p1Score});
-    } 
-  }
-
-  /* se todos os valores forem not null, o jogo acaba*/
-
-    if (checkTie(updatedBoard)){
+    if (winner) {
       setGameOver(true);
-  }
+      setShowPopup(true);
+      if (winner === 'Player2') {
+        let { p2Score } = scores;
+        p2Score += 1;
+        setScores({ ...scores, p2Score });
+        setWinner(winner);
+      } else {
+        let { p1Score } = scores;
+        p1Score += 1;
+        setScores({ ...scores, p1Score });
+        setWinner(winner);
+      }
+    } else if (checkTie(updatedBoard)) {
+      setGameOver(true);
+      setShowPopup(true);
+    }
 
     /* Muda a vez de jogar */
 
@@ -87,6 +90,18 @@ function PlayPvP() {
     return (board.every((value) => value !== null))
   }
 
+  //função para que o board dê reset ao clicarmos no botão "Reset"
+  const handleReset = () => {
+    resetBoard();
+  }
+
+  //função para que apareça um pop-up quando o jogo acaba
+  const handlePopupOk = () => {
+    setShowPopup(false);
+    resetBoard();
+    setWinner(null);
+    };
+
   /* Dá reset na board */
 
   const resetBoard = () =>{
@@ -97,7 +112,17 @@ function PlayPvP() {
   return (
     <div>
       <ScoreBoard scores ={scores}/>
-      <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick}/>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <h2>{winner ? `${winner} wins!` : "It's a tie!"}</h2>
+            <br />
+            <button onClick={handlePopupOk}>OK</button>
+          </div>
+        </div>
+      )}
+      <button className= "btn-reset " onClick={handleReset}>Resetar</button>
+      <Board board={board} onClick={handleBoxClick}/>
       </div>
   )
 }
