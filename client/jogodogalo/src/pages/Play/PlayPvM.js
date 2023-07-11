@@ -233,6 +233,10 @@ function PlayPvM({ difficulty }) {
     resetBoard();
   };
 
+  const handleReset = () => {
+    resetBoard();
+  }
+
   return (
     //código para o popup e para o tabuleiro
     <div>
@@ -249,7 +253,9 @@ function PlayPvM({ difficulty }) {
       )}
       
       <Board board={board} onClick={handleBoxClick} />
-      
+      <div>
+      <button onClick={handleReset}>reset</button>
+      </div>
     </div>
   );
 }
