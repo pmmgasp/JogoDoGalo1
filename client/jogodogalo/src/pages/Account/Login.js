@@ -58,7 +58,7 @@ const Login = () => {
                     <a href="/register" className="text">Não têm conta? Registe-se aqui.</a>
                     <br />
                     <br />
-                    <button className="button3" http-equiv="refresh" onClick={login}>Iniciar sessão</button>
+                    <button className="button3"  onClick={login}>Iniciar sessão</button>
                 </div>
         </div>
     )

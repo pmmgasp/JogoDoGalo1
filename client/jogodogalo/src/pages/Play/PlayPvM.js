@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Board } from '../../components/Board';
 import { ScoreBoard } from '../../components/ScoreBoard';
-//import Options from '../Options';
+import '../Options.css';
 
 function PlayPvM({ difficulty }) {
   const WC = [
@@ -251,10 +251,9 @@ function PlayPvM({ difficulty }) {
           </div>
         </div>
       )}
-      
+      <button className= "btn-reset " onClick={handleReset}>Reset</button>
       <Board board={board} onClick={handleBoxClick} />
       <div>
-      <button onClick={handleReset}>reset</button>
       </div>
     </div>
   );

@@ -106,6 +106,33 @@ app.post('/login', (req, res) => {
             );
 })
 
+//Editar nome do utilizador autenticado
+app.post("/changeName", (req, res) => {
+    const name = req.body.name
+    const nameNew = req.body.nameNew
+    db.query("UPDATE users SET name = ? WHERE name = ?;", [nameNew, name], (err, result) => {
+        if (err) {
+            console.log(err)
+            res.send({ erro: "Ocorreu um erro.", confirm: "" })
+        } else {
+            req.session.user[0].name = nameNew
+            res.send({ erro: "", confirm: "Nome de utilizador alterado com sucesso." })
+        }
+    })
+})
+
+
+//Remoção de uma conta
+app.post("/delete", (req, res) => {
+    const id = req.body.id
+    db.query("DELETE FROM users WHERE id = ?", [id], (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+        res.send({ apagado: "true" })
+    })
+});
+
 app.listen(3001, ()=>{
     console.log("Server is running on port 3001")
 })
